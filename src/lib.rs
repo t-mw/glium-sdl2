@@ -101,9 +101,9 @@ impl std::error::Error for GliumSdl2Error {
         }
     }
 
-    fn cause(&self) -> Option<&std::error::Error> {
+    fn cause(&self) -> Option<&dyn std::error::Error> {
         match *self {
-            GliumSdl2Error::WindowBuildError(ref err) => err.cause(),
+            GliumSdl2Error::WindowBuildError(ref err) => err.source(),
             GliumSdl2Error::ContextCreationError(_) => None
         }
     }
